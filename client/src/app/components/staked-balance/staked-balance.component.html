@@ -1,0 +1,107 @@
+<div class="staked-balance-container">
+  <!-- Loading State -->
+  <div *ngIf="loading" class="loading-container" fxLayout="column" fxLayoutAlign="center center">
+    <mat-spinner diameter="32"></mat-spinner>
+    <div class="loading-text">Chargement des informations de staking...</div>
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="error && !loading" class="error-container" fxLayout="column" fxLayoutAlign="center center">
+    <mat-icon class="error-icon">error_outline</mat-icon>
+    <div class="error-text">Erreur lors du chargement des données</div>
+  </div>
+
+  <!-- Main Content -->
+  <div *ngIf="!loading && !error && stakingInfo" class="staking-content">
+    
+    <!-- Price Display -->
+    <div class="price-section" fxLayout="row" fxLayoutAlign="space-between center">
+      <div class="price-info">
+        <div class="price-label">Prix HYPE</div>
+        <div class="price-value" fxLayout="row" fxLayoutAlign="start center">
+          <span class="price-amount">${{ hypePrice ? formatPrice(hypePrice.usd) : '0.0000' }}</span>
+          <div class="price-change" [class]="getPriceChangeClass()" fxLayout="row" fxLayoutAlign="start center">
+            <mat-icon class="change-icon">{{ getPriceChangeIcon() }}</mat-icon>
+            <span class="change-text">{{ hypePrice ? formatPriceChange(hypePrice.usd_24h_change) : '0.00%' }}</span>
+          </div>
+        </div>
+      </div>
+      <button mat-icon-button class="refresh-button" (click)="refreshData()" matTooltip="Actualiser">
+        <mat-icon>refresh</mat-icon>
+      </button>
+    </div>
+
+    <!-- Total Staked Section -->
+    <div class="total-staked-section" fxLayout="column" fxLayoutAlign="center center">
+      <div class="total-staked-amount">{{ stakingInfo?.totalStaked?.toFixed(8) || '0.00000000' }}</div>
+      <div class="total-staked-label">HYPE Stakés</div>
+      <div class="total-staked-value">{{ formatUSD(getTotalValueUSD()) }}</div>
+      
+      <!-- Lock Status -->
+      <div *ngIf="stakingInfo.lockedUntil" class="lock-status" [class]="isLocked() ? 'locked' : 'unlocked'" fxLayout="row" fxLayoutAlign="center center">
+        <mat-icon>{{ isLocked() ? 'lock' : 'lock_open' }}</mat-icon>
+        <span>{{ getLockedUntilDate() }}</span>
+      </div>
+    </div>
+
+    <!-- Stats Section -->
+    <div class="stats-section" fxLayout="row" fxLayoutAlign="space-around center">
+      <div class="stat-item">
+              <div class="stat-value positive">{{ stakingInfo?.apy?.toFixed(1) || '0.0' }}%</div>
+      <div class="stat-label">APY</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value">{{ stakingInfo?.rewards?.length || 0 }}</div>
+      <div class="stat-label">Rewards</div>
+    </div>
+      <div class="stat-item">
+        <div class="stat-value positive">{{ getTotalRewards().toFixed(6) }}</div>
+        <div class="stat-label">Total Rewards</div>
+      </div>
+    </div>
+
+    <!-- Rewards Value Section -->
+    <div class="rewards-value-section" fxLayout="column" fxLayoutAlign="center center">
+      <div class="rewards-value-label">Valeur des Rewards</div>
+      <div class="rewards-value-amount">{{ formatUSD(getTotalRewardsValueUSD()) }}</div>
+    </div>
+
+    <!-- Chart Section -->
+    <div *ngIf="chartData.length > 0" class="chart-section">
+      <div class="chart-header" fxLayout="row" fxLayoutAlign="space-between center">
+        <h3 class="chart-title">Rewards des 7 derniers jours</h3>
+        <button mat-icon-button class="refresh-button" (click)="refreshStakingInfo()" matTooltip="Actualiser">
+          <mat-icon>refresh</mat-icon>
+        </button>
+      </div>
+      
+      <div class="chart-container">
+        <!-- Y-axis labels -->
+        <div class="chart-y-axis">
+          <div class="y-label max">{{ formatChartValue(getMaxChartValue()) }}</div>
+          <div class="y-label mid">{{ formatChartValue(getMidChartValue()) }}</div>
+          <div class="y-label min">{{ formatChartValue(getMinChartValue()) }}</div>
+        </div>
+        
+        <!-- Chart bars -->
+        <div class="chart-bars" fxLayout="row" fxLayoutAlign="space-around end" [style.height.px]="getChartHeight()">
+          <div *ngFor="let item of chartData" class="chart-bar">
+            <div class="bar-tooltip">
+              {{ formatChartValue(item.amount) }} HYPE
+              <br>
+              {{ formatUSD(item.amount * (hypePrice?.usd || 0)) }}
+            </div>
+            <div class="bar-fill" [style.height.%]="getBarHeight(item.amount)"></div>
+            <div class="bar-label">{{ item.date }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- No Data State -->
+    <div *ngIf="chartData.length === 0" class="no-data" fxLayout="column" fxLayoutAlign="center center">
+      <mat-icon class="no-data-icon">bar_chart</mat-icon>
+      <div class="no-data-text">Aucune donnée de rewards disponible</div>
+    </div>
+  </div>
+</div> 

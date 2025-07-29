@@ -1,0 +1,114 @@
+<div class="staking-history-container" fxLayout="column" fxLayoutGap="16px">
+  
+  <!-- En-tête de l'historique -->
+  <mat-card class="history-header-card">
+    <mat-card-header>
+      <mat-card-title>
+        <mat-icon>history</mat-icon>
+        Historique des Rewards
+      </mat-card-title>
+      <mat-card-subtitle>
+        Vos transactions de staking HYPE
+      </mat-card-subtitle>
+    </mat-card-header>
+    
+    <mat-card-content>
+      <div *ngIf="loading" class="loading-container" fxLayout="row" fxLayoutAlign="center center">
+        <mat-spinner diameter="40"></mat-spinner>
+        <span class="loading-text">Chargement de l'historique...</span>
+      </div>
+      
+      <div *ngIf="error" class="error-container" fxLayout="column" fxLayoutAlign="center center">
+        <mat-icon class="error-icon">error</mat-icon>
+        <span class="error-text">{{ error }}</span>
+        <button mat-raised-button color="primary" (click)="refreshHistory()">
+          <mat-icon>refresh</mat-icon>
+          Réessayer
+        </button>
+      </div>
+      
+      <div *ngIf="stakingHistory.length > 0 && !loading && !error" class="history-content" fxLayout="column" fxLayoutGap="16px">
+        
+        <!-- Résumé des totaux -->
+        <div class="summary-section" fxLayout="row" fxLayoutAlign="space-around center">
+          <div class="summary-item" fxLayout="column" fxLayoutAlign="center center">
+            <div class="summary-value positive">+{{ formatAmountOnly(getTotalRewards()) }}</div>
+            <div class="summary-label">Total Rewards</div>
+          </div>
+          <div class="summary-item" fxLayout="column" fxLayoutAlign="center center">
+            <div class="summary-value negative">-{{ formatAmountOnly(getTotalUnstaking()) }}</div>
+            <div class="summary-label">Total Unstaking</div>
+          </div>
+        </div>
+        
+        <!-- Filtres -->
+        <div class="filters-section" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="8px">
+          <button 
+            [class.active]="selectedFilter === 'all'"
+            (click)="selectedFilter = 'all'"
+            class="filter-chip">
+            Tout
+          </button>
+          <button 
+            [class.active]="selectedFilter === 'staking_reward'"
+            (click)="selectedFilter = 'staking_reward'"
+            class="filter-chip">
+            <mat-icon>trending_up</mat-icon>
+            Rewards
+          </button>
+          <button 
+            [class.active]="selectedFilter === 'unstaking'"
+            (click)="selectedFilter = 'unstaking'"
+            class="filter-chip">
+            <mat-icon>trending_down</mat-icon>
+            Unstaking
+          </button>
+        </div>
+        
+        <!-- Liste des transactions -->
+        <div class="transactions-list" fxLayout="column" fxLayoutGap="8px">
+          <div 
+            *ngFor="let transaction of getFilteredHistory()" 
+            class="transaction-item"
+            fxLayout="row"
+            fxLayoutAlign="space-between center">
+            
+            <div class="transaction-info" fxLayout="row" fxLayoutAlign="start center" fxFlex>
+              <div class="transaction-icon" [ngClass]="getTypeColor(transaction.type)">
+                <mat-icon>{{ getTypeIcon(transaction.type) }}</mat-icon>
+              </div>
+              
+              <div class="transaction-details" fxLayout="column" fxLayoutGap="4px">
+                <div class="transaction-type">{{ getTypeLabel(transaction.type) }}</div>
+                <div class="transaction-date">{{ formatDate(transaction.timestamp) }}</div>
+                <div *ngIf="transaction.transaction_hash" class="transaction-hash">
+                  {{ transaction.transaction_hash.substring(0, 10) }}...
+                </div>
+              </div>
+            </div>
+            
+            <div class="transaction-amount" [ngClass]="transaction.amount >= 0 ? 'positive' : 'negative'">
+              {{ formatAmount(transaction.amount) }}
+            </div>
+          </div>
+        </div>
+        
+        <!-- Message si aucun résultat -->
+        <div *ngIf="getFilteredHistory().length === 0" class="no-results" fxLayout="column" fxLayoutAlign="center center">
+          <mat-icon class="no-results-icon">inbox</mat-icon>
+          <span class="no-results-text">Aucune transaction trouvée</span>
+        </div>
+      </div>
+      
+      <!-- Message si aucun historique -->
+      <div *ngIf="stakingHistory.length === 0 && !loading && !error" class="empty-state" fxLayout="column" fxLayoutAlign="center center">
+        <mat-icon class="empty-icon">account_balance_wallet</mat-icon>
+        <span class="empty-text">Aucun historique de staking disponible</span>
+        <button mat-raised-button color="primary" (click)="refreshHistory()">
+          <mat-icon>refresh</mat-icon>
+          Actualiser
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div> 

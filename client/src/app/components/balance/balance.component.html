@@ -1,0 +1,77 @@
+<div class="balance-container" fxLayout="column" fxLayoutGap="16px">
+  
+  <!-- En-tête du solde -->
+  <mat-card class="balance-card">
+    <mat-card-header>
+      <mat-card-title>
+        <mat-icon>account_balance_wallet</mat-icon>
+        Solde HYPE
+      </mat-card-title>
+      <mat-card-subtitle>
+        Votre portefeuille HYPE
+      </mat-card-subtitle>
+    </mat-card-header>
+    
+    <mat-card-content>
+      <div *ngIf="loading" class="loading-container" fxLayout="row" fxLayoutAlign="center center">
+        <mat-spinner diameter="40"></mat-spinner>
+        <span class="loading-text">Chargement du solde...</span>
+      </div>
+      
+      <div *ngIf="error" class="error-container" fxLayout="column" fxLayoutAlign="center center">
+        <mat-icon class="error-icon">error</mat-icon>
+        <span class="error-text">{{ error }}</span>
+        <button mat-raised-button color="primary" (click)="refreshBalance()">
+          <mat-icon>refresh</mat-icon>
+          Réessayer
+        </button>
+      </div>
+      
+      <div *ngIf="balance && !loading && !error" class="balance-content" fxLayout="column" fxLayoutGap="16px">
+        
+        <!-- Solde principal -->
+        <div class="main-balance" fxLayout="column" fxLayoutAlign="center center">
+          <div class="balance-amount">
+            {{ formatNumber(balance.balance) }}
+          </div>
+          <div class="balance-symbol">
+            {{ balance.symbol }}
+          </div>
+        </div>
+        
+        <!-- Valeur en USD -->
+        <div class="usd-value" fxLayout="row" fxLayoutAlign="center center">
+          <mat-icon class="usd-icon">attach_money</mat-icon>
+          <span class="usd-amount">{{ formatUSD(balance.value_usd) }}</span>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  
+  <!-- Statistiques rapides -->
+  <mat-card class="stats-card" *ngIf="balance && !loading && !error">
+    <mat-card-header>
+      <mat-card-title>
+        <mat-icon>analytics</mat-icon>
+        Statistiques
+      </mat-card-title>
+    </mat-card-header>
+    
+    <mat-card-content>
+      <div class="stats-grid" fxLayout="row" fxLayoutAlign="space-around center">
+        <div class="stat-item" fxLayout="column" fxLayoutAlign="center center">
+          <div class="stat-value">{{ getAPY() }}</div>
+          <div class="stat-label">APY</div>
+        </div>
+        <div class="stat-item" fxLayout="column" fxLayoutAlign="center center">
+          <div class="stat-value">{{ getDuration() }}</div>
+          <div class="stat-label">Durée</div>
+        </div>
+        <div class="stat-item" fxLayout="column" fxLayoutAlign="center center">
+          <div class="stat-value">{{ getStakedAmount() }}</div>
+          <div class="stat-label">Staké</div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div> 

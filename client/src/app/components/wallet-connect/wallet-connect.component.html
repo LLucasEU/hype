@@ -1,0 +1,78 @@
+<div class="connect-container" fxLayout="column" fxLayoutAlign="center center">
+  
+  <!-- Logo et titre -->
+  <div class="brand-section" fxLayout="column" fxLayoutAlign="center center">
+    <div class="logo-container">
+      <mat-icon class="logo-icon">account_balance_wallet</mat-icon>
+    </div>
+    <h1 class="app-title">HYPE Wallet</h1>
+    <p class="app-subtitle">Connectez votre portefeuille Hyperliquid</p>
+  </div>
+
+  <!-- Formulaire de connexion -->
+  <div class="connect-form" fxLayout="column" fxLayoutAlign="center center">
+    <form [formGroup]="walletForm" (ngSubmit)="connectWallet()" class="wallet-form">
+      
+      <!-- Champ d'adresse -->
+      <div class="address-input-container">
+        <mat-form-field appearance="outline" class="address-field">
+          <mat-label>Adresse du portefeuille</mat-label>
+          <input 
+            matInput 
+            formControlName="walletAddress"
+            placeholder="0x..."
+            (input)="clearError()"
+            class="address-input">
+          <mat-icon matSuffix class="field-icon">account_circle</mat-icon>
+          
+          <!-- Bouton coller -->
+          <button 
+            matSuffix 
+            mat-icon-button 
+            type="button"
+            (click)="pasteFromClipboard()"
+            class="paste-button"
+            matTooltip="Coller depuis le presse-papiers">
+            <mat-icon>content_paste</mat-icon>
+          </button>
+        </mat-form-field>
+        
+        <!-- Messages d'erreur -->
+        <div *ngIf="walletForm.get('walletAddress')?.invalid && walletForm.get('walletAddress')?.touched" 
+             class="error-message">
+          {{ getErrorMessage() }}
+        </div>
+        
+        <div *ngIf="error" class="error-message">
+          {{ error }}
+        </div>
+      </div>
+
+      <!-- Bouton de connexion -->
+      <button 
+        mat-raised-button 
+        color="primary" 
+        type="submit"
+        [disabled]="walletForm.invalid || isLoading"
+        class="connect-button">
+        
+        <mat-spinner *ngIf="isLoading" diameter="20" class="button-spinner"></mat-spinner>
+        <span *ngIf="!isLoading">
+          <mat-icon>login</mat-icon>
+          Se connecter
+        </span>
+      </button>
+    </form>
+  </div>
+
+  <!-- Informations -->
+  <div class="info-section" fxLayout="column" fxLayoutAlign="center center">
+    <div class="info-card">
+      <mat-icon class="info-icon">info</mat-icon>
+      <p class="info-text">
+        Votre adresse de portefeuille est stockée localement et n'est jamais transmise à des tiers.
+      </p>
+    </div>
+  </div>
+
+</div> 

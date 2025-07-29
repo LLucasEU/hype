@@ -1,0 +1,569 @@
+.staked-balance-container {
+  padding: 12px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.price-section {
+  background: var(--hype-card-bg);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+  border: 1px solid var(--hype-border);
+  
+  .price-info {
+    .price-label {
+      font-size: 0.8rem;
+      color: var(--hype-text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+    
+    .price-value {
+      gap: 8px;
+      
+      .price-amount {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--hype-text-primary);
+      }
+      
+      .price-change {
+        padding: 4px 8px;
+        border-radius: 6px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        
+        &.positive {
+          background: rgba(80, 210, 193, 0.2);
+          color: var(--hype-accent-primary);
+        }
+        
+        &.negative {
+          background: rgba(255, 107, 107, 0.2);
+          color: #ff6b6b;
+        }
+        
+        .change-icon {
+          font-size: 14px;
+          width: 14px;
+          height: 14px;
+          margin-right: 2px;
+        }
+        
+        .change-text {
+          font-size: 0.7rem;
+        }
+      }
+    }
+  }
+  
+  .refresh-button {
+    color: var(--hype-text-secondary);
+    
+    &:hover {
+      color: var(--hype-accent-primary);
+      background: rgba(80, 210, 193, 0.1);
+    }
+  }
+}
+
+.staked-card {
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  background: var(--hype-card-bg);
+  color: var(--hype-text-primary);
+  border: 1px solid var(--hype-border);
+  
+  mat-card-header {
+    padding: 16px 16px 0;
+    
+    mat-card-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+      
+      mat-icon {
+        font-size: 20px;
+        width: 20px;
+        height: 20px;
+      }
+    }
+    
+    mat-card-subtitle {
+      color: var(--hype-text-secondary);
+      font-size: 0.9rem;
+    }
+  }
+  
+  mat-card-content {
+    padding: 16px;
+  }
+}
+
+.loading-container {
+  padding: 30px 16px;
+  gap: 12px;
+  
+  .loading-text {
+    color: var(--hype-text-secondary);
+    font-size: 0.9rem;
+  }
+}
+
+.error-container {
+  padding: 30px 16px;
+  gap: 12px;
+  
+  .error-icon {
+    font-size: 40px;
+    width: 40px;
+    height: 40px;
+    color: #ff6b6b;
+  }
+  
+  .error-text {
+    color: var(--hype-text-secondary);
+    font-size: 0.9rem;
+    text-align: center;
+  }
+}
+
+.staking-content {
+  .total-staked-section {
+    padding: 16px 0;
+    
+    .total-staked-amount {
+      font-size: 2.5rem;
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 6px;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      color: var(--hype-text-primary);
+    }
+    
+    .total-staked-label {
+      font-size: 1rem;
+      font-weight: 500;
+      opacity: 0.9;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+      color: var(--hype-text-secondary);
+    }
+    
+    .total-staked-value {
+      font-size: 1.1rem;
+      font-weight: 600;
+      opacity: 0.8;
+      margin-bottom: 12px;
+      color: var(--hype-accent-primary);
+    }
+    
+    .lock-status {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      
+      &.locked {
+        background: rgba(255, 107, 107, 0.2);
+        color: #ff6b6b;
+        border: 1px solid rgba(255, 107, 107, 0.3);
+      }
+      
+      &.unlocked {
+        background: rgba(80, 210, 193, 0.2);
+        color: var(--hype-accent-primary);
+        border: 1px solid rgba(80, 210, 193, 0.3);
+      }
+      
+      mat-icon {
+        font-size: 16px;
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
+  
+  .stats-section {
+    padding: 16px;
+    background: rgba(80, 210, 193, 0.1);
+    border-radius: 12px;
+    margin-bottom: 16px;
+    
+    .stat-item {
+      flex: 1;
+      text-align: center;
+      
+      .stat-value {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 4px;
+        color: var(--hype-text-primary);
+        
+        &.positive {
+          color: var(--hype-accent-primary);
+        }
+      }
+      
+      .stat-label {
+        font-size: 0.7rem;
+        font-weight: 500;
+        color: var(--hype-text-secondary);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+    }
+  }
+
+  .rewards-value-section {
+    background: var(--hype-card-bg);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 16px;
+    border: 1px solid var(--hype-border);
+    text-align: center;
+    
+    .rewards-value-label {
+      font-size: 0.8rem;
+      color: var(--hype-text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+    
+    .rewards-value-amount {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--hype-accent-primary);
+    }
+  }
+  
+  .chart-section {
+    background: rgba(80, 210, 193, 0.1);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 16px;
+    
+    .chart-header {
+      margin-bottom: 16px;
+      
+      .chart-title {
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--hype-text-primary);
+        margin: 0;
+      }
+      
+      .refresh-button {
+        color: var(--hype-text-secondary);
+        
+        &:hover {
+          color: var(--hype-text-primary);
+          background: rgba(80, 210, 193, 0.1);
+        }
+      }
+    }
+    
+    .chart-container {
+      min-height: 150px;
+      max-height: 200px;
+      display: flex;
+      align-items: end;
+      position: relative;
+      overflow: visible;
+      padding-left: 50px; // Espace pour l'axe Y
+      
+      .chart-y-axis {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 45px;
+        z-index: 1;
+        
+        .y-label {
+          font-size: 0.6rem;
+          color: var(--hype-text-secondary);
+          font-weight: 500;
+          text-align: right;
+          line-height: 1;
+          padding-right: 8px;
+          
+          &.max {
+            color: var(--hype-accent-primary);
+            font-weight: 600;
+          }
+          
+          &.min {
+            color: var(--hype-text-tertiary);
+          }
+        }
+      }
+      
+      .chart-bars {
+        width: 100%;
+        height: 100%;
+        gap: 4px;
+        display: flex;
+        align-items: end;
+        
+        .chart-bar {
+          flex: 1;
+          min-width: 25px;
+          max-width: 40px;
+          position: relative;
+          transition: all 0.3s ease;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          
+          &:hover {
+            transform: scale(1.05);
+            
+            .bar-tooltip {
+              opacity: 1;
+              transform: translateY(-8px);
+            }
+          }
+          
+          .bar-tooltip {
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%) translateY(0);
+            background: rgba(0, 0, 0, 0.95);
+            color: white;
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 0.65rem;
+            font-weight: 500;
+            white-space: nowrap;
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 10;
+            text-align: center;
+            line-height: 1.2;
+            min-width: 80px;
+            
+            &::after {
+              content: '';
+              position: absolute;
+              top: 100%;
+              left: 50%;
+              transform: translateX(-50%);
+              border: 4px solid transparent;
+              border-top-color: rgba(0, 0, 0, 0.95);
+            }
+          }
+          
+          .bar-fill {
+            width: 100%;
+            background: linear-gradient(135deg, var(--hype-accent-primary) 0%, var(--hype-accent-secondary) 100%);
+            border-radius: 3px 3px 0 0;
+            min-height: 3px;
+            box-shadow: 0 2px 6px rgba(80, 210, 193, 0.3);
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+          }
+          
+          .bar-label {
+            font-size: 0.55rem;
+            color: var(--hype-text-secondary);
+            text-align: center;
+            margin-top: 4px;
+            font-weight: 500;
+            line-height: 1;
+            word-break: break-word;
+            max-width: 100%;
+          }
+        }
+      }
+    }
+  }
+  
+  .no-data {
+    padding: 30px 16px;
+    
+    .no-data-icon {
+      font-size: 40px;
+      width: 40px;
+      height: 40px;
+      color: var(--hype-text-tertiary);
+      margin-bottom: 12px;
+    }
+    
+    .no-data-text {
+      color: var(--hype-text-secondary);
+      font-size: 0.9rem;
+      text-align: center;
+    }
+  }
+}
+
+// Responsive design pour mobile vertical
+@media (max-width: 480px) {
+  .staked-balance-container {
+    padding: 8px;
+  }
+  
+  .price-section {
+    padding: 12px;
+    
+    .price-info {
+      .price-value {
+        .price-amount {
+          font-size: 1.3rem;
+        }
+        
+        .price-change {
+          padding: 3px 6px;
+          
+          .change-text {
+            font-size: 0.6rem;
+          }
+        }
+      }
+    }
+  }
+  
+  .staked-card {
+    mat-card-header {
+      padding: 12px 12px 0;
+      
+      mat-card-title {
+        font-size: 1.2rem;
+        
+        mat-icon {
+          font-size: 18px;
+          width: 18px;
+          height: 18px;
+        }
+      }
+    }
+    
+    mat-card-content {
+      padding: 12px;
+    }
+  }
+  
+  .staking-content {
+    .total-staked-section {
+      padding: 12px 0;
+      
+      .total-staked-amount {
+        font-size: 2rem;
+      }
+      
+      .total-staked-label {
+        font-size: 0.9rem;
+      }
+      
+      .total-staked-value {
+        font-size: 1rem;
+      }
+      
+      .lock-status {
+        font-size: 0.7rem;
+        padding: 6px 10px;
+      }
+    }
+    
+    .stats-section {
+      padding: 12px;
+      
+      .stat-item {
+        .stat-value {
+          font-size: 1.3rem;
+        }
+        
+        .stat-label {
+          font-size: 0.6rem;
+        }
+      }
+    }
+
+    .rewards-value-section {
+      padding: 12px;
+      
+      .rewards-value-amount {
+        font-size: 1.5rem;
+      }
+    }
+    
+    .chart-section {
+      padding: 12px;
+      
+      .chart-container {
+        padding-left: 35px;
+        
+        .chart-y-axis {
+          left: 0;
+          width: 30px;
+          
+          .y-label {
+            font-size: 0.5rem;
+            padding-right: 4px;
+          }
+        }
+        
+        .chart-bars {
+          gap: 2px;
+          
+          .chart-bar {
+            min-width: 20px;
+            max-width: 30px;
+            
+            .bar-tooltip {
+              font-size: 0.55rem;
+              min-width: 60px;
+              padding: 4px 6px;
+            }
+            
+            .bar-label {
+              font-size: 0.45rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Animations
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.staking-content {
+  animation: slideInUp 0.5s ease-out;
+}
+
+.chart-bar {
+  animation: slideInUp 0.5s ease-out;
+}
+
+.chart-bar:nth-child(1) { animation-delay: 0.1s; }
+.chart-bar:nth-child(2) { animation-delay: 0.2s; }
+.chart-bar:nth-child(3) { animation-delay: 0.3s; }
+.chart-bar:nth-child(4) { animation-delay: 0.4s; }
+.chart-bar:nth-child(5) { animation-delay: 0.5s; }
+.chart-bar:nth-child(6) { animation-delay: 0.6s; }
+.chart-bar:nth-child(7) { animation-delay: 0.7s; } 

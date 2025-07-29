@@ -1,0 +1,274 @@
+.connect-container {
+  min-height: 100vh;
+  padding: 40px 20px;
+  background: var(--hype-gradient-bg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.brand-section {
+  margin-bottom: 60px;
+  text-align: center;
+  
+  .logo-container {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: rgba(80, 210, 193, 0.1);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+    border: 2px solid rgba(80, 210, 193, 0.3);
+    
+    .logo-icon {
+      font-size: 40px;
+      width: 40px;
+      height: 40px;
+      color: var(--hype-accent-primary);
+    }
+  }
+  
+  .app-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--hype-text-primary);
+    margin: 0 0 8px 0;
+    letter-spacing: -0.5px;
+  }
+  
+  .app-subtitle {
+    font-size: 1.1rem;
+    color: var(--hype-text-secondary);
+    margin: 0;
+    font-weight: 400;
+  }
+}
+
+.connect-form {
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 40px;
+  
+  .wallet-form {
+    width: 100%;
+    
+    .address-input-container {
+      margin-bottom: 32px;
+      
+      .address-field {
+        width: 100%;
+        
+        ::ng-deep .mat-form-field-wrapper {
+          padding-bottom: 0;
+        }
+        
+        ::ng-deep .mat-form-field-outline {
+          background: rgba(30, 30, 30, 0.8);
+          backdrop-filter: blur(10px);
+          border-radius: 12px;
+          border: 1px solid var(--hype-border-light);
+        }
+        
+        ::ng-deep .mat-form-field-outline-thick {
+          border-color: var(--hype-accent-primary);
+        }
+        
+        ::ng-deep .mat-form-field-label {
+          color: var(--hype-text-secondary);
+        }
+        
+        ::ng-deep .mat-form-field-outline-start,
+        ::ng-deep .mat-form-field-outline-end,
+        ::ng-deep .mat-form-field-outline-gap {
+          border-width: 0;
+        }
+        
+        .address-input {
+          color: var(--hype-text-primary);
+          font-family: 'Courier New', monospace;
+          font-size: 0.9rem;
+          
+          &::placeholder {
+            color: var(--hype-text-tertiary);
+          }
+        }
+        
+        .field-icon {
+          color: var(--hype-text-secondary);
+        }
+        
+        .paste-button {
+          color: var(--hype-text-secondary);
+          
+          &:hover {
+            color: var(--hype-accent-primary);
+            background: rgba(80, 210, 193, 0.1);
+          }
+        }
+      }
+      
+      .error-message {
+        color: #ff6b6b;
+        font-size: 0.8rem;
+        margin-top: 8px;
+        text-align: center;
+        background: rgba(255, 107, 107, 0.1);
+        padding: 8px 12px;
+        border-radius: 8px;
+        border: 1px solid rgba(255, 107, 107, 0.3);
+      }
+    }
+    
+    .connect-button {
+      width: 100%;
+      height: 56px;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      background: var(--hype-gradient-primary);
+      border: none;
+      box-shadow: 0 4px 20px rgba(80, 210, 193, 0.3);
+      transition: all 0.3s ease;
+      
+      &:hover:not(:disabled) {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 25px rgba(80, 210, 193, 0.4);
+      }
+      
+      &:disabled {
+        background: var(--hype-bg-tertiary);
+        color: var(--hype-text-tertiary);
+        box-shadow: none;
+      }
+      
+      .button-spinner {
+        margin-right: 8px;
+      }
+      
+      mat-icon {
+        margin-right: 8px;
+      }
+    }
+  }
+}
+
+.info-section {
+  width: 100%;
+  max-width: 400px;
+  
+  .info-card {
+    background: rgba(30, 30, 30, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid var(--hype-border-light);
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    
+    .info-icon {
+      color: var(--hype-text-secondary);
+      font-size: 20px;
+      width: 20px;
+      height: 20px;
+      margin-top: 2px;
+    }
+    
+    .info-text {
+      color: var(--hype-text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.5;
+      margin: 0;
+    }
+  }
+}
+
+// Responsive design
+@media (max-width: 480px) {
+  .connect-container {
+    padding: 20px 16px;
+  }
+  
+  .brand-section {
+    margin-bottom: 40px;
+    
+    .logo-container {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 20px;
+      
+      .logo-icon {
+        font-size: 30px;
+        width: 30px;
+        height: 30px;
+      }
+    }
+    
+    .app-title {
+      font-size: 2rem;
+    }
+    
+    .app-subtitle {
+      font-size: 1rem;
+    }
+  }
+  
+  .connect-form {
+    margin-bottom: 30px;
+    
+    .wallet-form {
+      .address-input-container {
+        margin-bottom: 24px;
+      }
+      
+      .connect-button {
+        height: 48px;
+        font-size: 1rem;
+      }
+    }
+  }
+  
+  .info-section {
+    .info-card {
+      padding: 16px;
+      
+      .info-text {
+        font-size: 0.8rem;
+      }
+    }
+  }
+}
+
+// Animations
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.connect-container {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.brand-section {
+  animation: fadeInUp 0.6s ease-out 0.1s both;
+}
+
+.connect-form {
+  animation: fadeInUp 0.6s ease-out 0.2s both;
+}
+
+.info-section {
+  animation: fadeInUp 0.6s ease-out 0.3s both;
+} 

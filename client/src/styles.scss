@@ -1,0 +1,145 @@
+/* You can add global styles to this file, and also import other style files */
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+// Variables de couleurs Hyperliquid (thème sombre)
+:root {
+  --hype-bg-primary: #0f1a1f;
+  --hype-bg-secondary: #1a2a2f;
+  --hype-bg-tertiary: #2a3a3f;
+  --hype-text-primary: #ffffff;
+  --hype-text-secondary: #a0a0a0;
+  --hype-text-tertiary: #666666;
+  --hype-accent-primary: #50d2c1;
+  --hype-accent-secondary: #26a69a;
+  --hype-accent-tertiary: #1e8a7a;
+  --hype-border: #2a3a3f;
+  --hype-border-light: #3a4a4f;
+  --hype-card-bg: #1a2a2f;
+  --hype-gradient-primary: linear-gradient(135deg, #50d2c1 0%, #26a69a 100%);
+  --hype-gradient-secondary: linear-gradient(135deg, #1a2a2f 0%, #2a3a3f 100%);
+  --hype-gradient-bg: linear-gradient(135deg, #0f1a1f 0%, #1a2a2f 100%);
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  background: var(--hype-gradient-bg);
+  color: var(--hype-text-primary);
+  overflow: hidden;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+// Material Design overrides pour le thème sombre
+.mat-typography {
+  font-family: 'Roboto', sans-serif;
+  color: var(--hype-text-primary);
+}
+
+// Override des couleurs Material Design
+.mat-mdc-card {
+  background-color: var(--hype-card-bg) !important;
+  color: var(--hype-text-primary) !important;
+  border: 1px solid var(--hype-border) !important;
+}
+
+.mat-mdc-card-header {
+  color: var(--hype-text-primary) !important;
+}
+
+.mat-mdc-card-title {
+  color: var(--hype-text-primary) !important;
+}
+
+.mat-mdc-card-subtitle {
+  color: var(--hype-text-secondary) !important;
+}
+
+.mat-mdc-form-field {
+  color: var(--hype-text-primary) !important;
+}
+
+.mat-mdc-form-field-label {
+  color: var(--hype-text-secondary) !important;
+}
+
+.mat-mdc-input-element {
+  color: var(--hype-text-primary) !important;
+}
+
+.mat-mdc-button.mat-primary {
+  background-color: var(--hype-accent-primary) !important;
+  color: var(--hype-bg-primary) !important;
+}
+
+.mat-mdc-raised-button.mat-primary {
+  background-color: var(--hype-accent-primary) !important;
+  color: var(--hype-bg-primary) !important;
+}
+
+.mat-mdc-tab-group {
+  color: var(--hype-text-primary) !important;
+}
+
+.mat-mdc-tab-label {
+  color: var(--hype-text-secondary) !important;
+}
+
+.mat-mdc-tab-label.mat-mdc-tab-label-active {
+  color: var(--hype-accent-primary) !important;
+}
+
+.mat-mdc-tab-header {
+  border-bottom-color: var(--hype-border) !important;
+}
+
+.mat-mdc-tab-ink-bar {
+  background-color: var(--hype-accent-primary) !important;
+}
+
+// Custom scrollbar
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--hype-bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--hype-border-light);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--hype-accent-primary);
+}
+
+// Mobile optimizations
+@media (max-width: 768px) {
+  html, body {
+    font-size: 14px;
+  }
+}
+
+// Utility classes
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+.mt-16 { margin-top: 16px; }
+.mb-16 { margin-bottom: 16px; }
+.p-16 { padding: 16px; }
+
+// Classes utilitaires pour les couleurs Hyperliquid
+.hype-bg-primary { background-color: var(--hype-bg-primary); }
+.hype-bg-secondary { background-color: var(--hype-bg-secondary); }
+.hype-bg-tertiary { background-color: var(--hype-bg-tertiary); }
+.hype-text-primary { color: var(--hype-text-primary); }
+.hype-text-secondary { color: var(--hype-text-secondary); }
+.hype-text-tertiary { color: var(--hype-text-tertiary); }
+.hype-accent-primary { color: var(--hype-accent-primary); }
+.hype-border { border-color: var(--hype-border); }
+.hype-border-light { border-color: var(--hype-border-light); }
