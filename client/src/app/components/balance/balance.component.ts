@@ -30,8 +30,7 @@ export class BalanceComponent implements OnInit, OnChanges {
   loadBalance(): void {
     this.loading = true;
     this.error = '';
-    
-    // Charger le solde et les stats en parallèle
+
     this.hyperliquidService.getHypeBalance(this.walletAddress).subscribe({
       next: (balance) => {
         this.balance = balance;
@@ -68,17 +67,17 @@ export class BalanceComponent implements OnInit, OnChanges {
     } else if (Math.abs(value) < 1) {
       return value.toFixed(4);
     } else {
-      return value.toLocaleString('fr-FR', { 
-        minimumFractionDigits: 2, 
-        maximumFractionDigits: 2 
+      return value.toLocaleString('fr-FR', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
       });
     }
   }
 
   formatUSD(value: number): string {
-    return new Intl.NumberFormat('fr-FR', { 
-      style: 'currency', 
-      currency: 'USD' 
+    return new Intl.NumberFormat('fr-FR', {
+      style: 'currency',
+      currency: 'USD'
     }).format(value);
   }
 
@@ -93,4 +92,4 @@ export class BalanceComponent implements OnInit, OnChanges {
   getStakedAmount(): string {
     return this.stakingStats?.totalStaked ? this.formatNumber(this.stakingStats.totalStaked) : '0';
   }
-} 
+}
